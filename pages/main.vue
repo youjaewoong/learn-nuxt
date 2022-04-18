@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<h1>홈 페이지</h1>
-		<p>넉스트 시작하기</p>
+		<h1>메인 페이지</h1>
+		<p>메인 페이입니다</p>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'LearnNuxtIndex',
+	name: 'LearnNuxtMain',
 
 	data() {
 		return {};
