@@ -50,3 +50,8 @@
 
 ### api server
 - https://my-json-server.typicode.com/youjaewoong/nuxt-shopping-api
+
+
+### ssr url, ssg url
+- ssr: https://dashboard.heroku.com/apps/nuxt-shopping-v1
+- ssg: https://app.netlify.com/teams/youjaewoong/overview
