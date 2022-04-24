@@ -25,3 +25,13 @@
 - 상세
 - 장바구니 담기
 - 장바구니 리스트
+
+
+### heroku cli
+- https://dashboard.heroku.com/apps
+  
+- git 연동
+  heroku git:remote -a <app-name>
+  
+- 자동 build
+  git push heroku HEAD:master
