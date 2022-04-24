@@ -27,11 +27,26 @@
 - 장바구니 리스트
 
 
-### heroku cli
-- https://dashboard.heroku.com/apps
+### SSR build
+- nuxt.config.js 에서 아래 내용 주석
+  //`target: 'static',
+- heroku site에 build
+  - https://dashboard.heroku.com/apps
   
-- git 연동
-  heroku git:remote -a <app-name>
-  
-- 자동 build
-  git push heroku HEAD:master
+- heroku github 연동 및 빌드
+  - 해당 프로젝트 이동
+  `heroku git:remote -a <app-name>`
+
+  - 자동 build
+  `git push heroku HEAD:master`
+
+### SSG build
+- nuxt.config.js 에서 아래 내용 추가
+  `target: 'static',`  
+- dist 파일 생성
+  `npm run generate`
+
+- https://www.netlify.com/ 접속 및 연동 작업
+
+### api server
+- https://my-json-server.typicode.com/youjaewoong/nuxt-shopping-api
