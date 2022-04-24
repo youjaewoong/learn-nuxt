@@ -1,8 +1,6 @@
-const isProduction = process.env.NODE_ENV === 'production';
-
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
-	// target: 'static',
+	target: 'static',
 
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
@@ -46,8 +44,9 @@ export default {
 
 	// env
 	env: {
-		baseURL: isProduction
-			? 'https://my-json-server.typicode.com/youjaewoong/nuxt-shopping-api'
-			: 'http://localhost:3000',
+		baseURL:
+			process.env.NODE_ENV === 'production'
+				? 'https://my-json-server.typicode.com/youjaewoong/nuxt-shopping-api'
+				: 'http://localhost:3000',
 	},
 };
