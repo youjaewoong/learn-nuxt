@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { createCartItem, fetchProductById } from '@/api';
+import { createCartItem, fetchCartItems, fetchProductById } from '@/api';
 export default {
 	async asyncData({ params }) {
 		const response = await fetchProductById(params.id);
@@ -58,10 +58,16 @@ export default {
 	mounted() {},
 	methods: {
 		async addToCart() {
-			const reponse = await createCartItem(this.product);
-			console.log(reponse);
-			// this.$store.commit('addCartItem', this.product);
-			this.$router.push('/cart');
+			const { data } = await fetchCartItems();
+			const itemValid = data.filter(item => item.id === this.product.id);
+			if (itemValid.length > 0) {
+				alert('장바구니에 상품이 존재합니다.');
+			} else {
+				const reponse = await createCartItem(this.product);
+				console.log(reponse);
+				this.$store.commit('addCartItem', this.product);
+				this.$router.push('/cart');
+			}
 		},
 	},
 };
