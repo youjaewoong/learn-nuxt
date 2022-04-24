@@ -1,25 +1,45 @@
-import { fetchCartItems } from '~/api'
+import { fetchCartItems } from '~/api';
 
+export const FETCH_CART_ITEMS = 'FETCH_CART_ITEMS';
+
+// store
 export const state = () => ({
-  carts: [],
-})
+	cartItems: [],
+});
 
 export const mutations = {
-  addItemToCart(state, item) {
-    state.carts.push(item)
-  },
-  setCarts(state, carts) {
-    state.carts = carts
-  },
-}
+	addCartItem(state, cartItem) {
+		const newCartItem = {
+			...cartItem,
+			imageUrl: `${cartItem.imageUrl}?random=${Math.random()}`,
+		};
+		state.cartItems.push(newCartItem);
+	},
+	setCartItems(state, cartItems) {
+		state.cartItems = cartItems;
+	},
+};
 
 export const actions = {
-  async fetchCarts(context) {
-    const { data } = await fetchCartItems()
-    const items = data.map((item) => ({
-      ...item,
-      imageUrl: `${item.imageUrl}?random=${Math.random()}`,
-    }))
-    context.commit('setCarts', items)
-  },
-}
+	async [FETCH_CART_ITEMS]({ commit }) {
+		const { data } = await fetchCartItems();
+		commit(
+			'setCartItems',
+			data.map(item => ({
+				...item,
+				imageUrl: `${item.imageUrl}?random=${Math.random()}`,
+			})),
+		);
+	},
+	// async nuxtServerInit(storeContext, nuxtContext) {
+	// 	await storeContext.dispath(FETCH_CART_ITEMS);
+	// 	// const { data } = await fetchCartItems();
+	// 	// storeContext.commit(
+	// 	// 	'setCartItems',
+	// 	// 	data.map(item => ({
+	// 	// 		...item,
+	// 	// 		imageUrl: `${item.imageUrl}?random=${Math.random()}`,
+	// 	// 	})),
+	// 	// );
+	// },
+};

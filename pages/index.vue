@@ -51,7 +51,9 @@ export default {
 		moveToDetailPage(id) {
 			this.$router.push(`detail/${id}`);
 		},
-		moveToCartPage() {},
+		moveToCartPage() {
+			this.$router.push('/cart');
+		},
 		async searchProducts() {
 			const response = await fetchProductsByKeyword(this.searchKeyword);
 			this.products = response.data.map(item => ({

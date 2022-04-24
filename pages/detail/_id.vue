@@ -11,14 +11,14 @@
 			<div class="side-panel">
 				<p class="name">{{ product.name }}</p>
 				<p class="price">{{ product.price }}</p>
-				<button type="button" @click="addToCart">Add to Cart</button>
+				<button type="button" @click="addToCart">카트에 담기</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import { fetchProductById } from '@/api';
+import { createCartItem, fetchProductById } from '@/api';
 export default {
 	async asyncData({ params }) {
 		const response = await fetchProductById(params.id);
@@ -29,7 +29,14 @@ export default {
 		return {};
 	},
 	mounted() {},
-	methods: { addToCart() {} },
+	methods: {
+		async addToCart() {
+			const reponse = await createCartItem(this.product);
+			console.log(reponse);
+			// this.$store.commit('addCartItem', this.product);
+			this.$router.push('/cart');
+		},
+	},
 };
 </script>
 
